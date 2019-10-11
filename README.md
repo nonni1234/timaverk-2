@@ -1,1 +1,1 @@
-# timaverk-2
+## Tímaverkefni 2 - Jón Bjarki og Sesselja
