@@ -1,35 +1,47 @@
-import PySimpleGUI as sg
-from time import sleep
+import os
+from flask import Flask, render_template as template, session, url_for, request, redirect, json
+app = Flask(__name__)
+app.secret_key = os.urandom(8)
+# Gera stuff tilbúið
 
-menu = [["People",["Nonni","Sessa"]],["Matur",["Epli","Banani"]]]
-layout = [
-    [sg.Menu(menu)],
-    [sg.Text("Færðu þennan glugga til hægri eða vinstri")],
-    [sg.Button(button_text="Left",key="a"),sg.Button(button_text="Right",key="d"),sg.Button(button_text="Up",key="w"),sg.Button(button_text="Down",key="s")]
-]
+teljari = 0
+with open("static/quiz.json", "r", encoding="UTF-8") as f:
+    quizzes= json.load(f)
+    quizzes = quizzes["quizzes"]
 
-window = sg.Window("Test Window", layout,button_color=("white","blue"), transparent_color=("cyan"),return_keyboard_events=True)
 
-while True:
-    event, values = window.read()
-    location = window.current_location()
-    x = location[0]
-    y = location[1]
-    if event in (None, 'Cancel',"Ok"):   # if user closes window or clicks cancel
-        print('You entered ', values[0])
-        break
-    if event in ("Nonni"):
-        print("uwu")
-    if event == "a":
-        x-=50
-        window.move(x,y)
-    if event == "d":
-        x+=50
-        window.move(x,y)
-    if event == "s":
-        y+= 50
-        window.move(x,y)
-    if event == "w":
-        y-= 50
-        window.move(x,y)
-window.close()
+@app.route("/") # Root Routeið
+def home():
+    teljari = 0 # Redefinear teljara
+    if "teljari" in session: # Ef teljari er í session þá er hann notaður
+        teljari = session["teljari"]
+    else: # Ef ekki þá er hann settur inn í session
+        session["teljari"] = teljari
+    return template("index.html",spurning = quizzes["shrek"][teljari])
+
+@app.route("/next") # Næsta spurning (hækkar teljara um eitt)
+def addTel(teljari=teljari):
+    if "teljari" in session: # Notar teljara inn í session ef hann er til
+        teljari = session["teljari"]
+        print(teljari)
+        if teljari >= len(quizzes["shrek"])-1:
+            teljari = 0
+        else:
+            teljari += 1
+        session["teljari"] = teljari
+        
+    else: # Ef það er enginn teljari inn í Session þá gerist ekkert
+        pass
+    return redirect(url_for("home"))
+
+    
+
+
+
+@app.errorhandler(404)
+def pagenotfound(error):
+    return template("404.html"), 404
+
+if __name__ == '__main__':
+    #app.run()
+    app.run(debug=True, use_reloader=True)
