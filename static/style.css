@@ -1,0 +1,25 @@
+/* Spurningar */
+body {
+    background: #180061e3;
+}
+.spurning {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    background: #3d0ad8ab;
+    border: 1px solid black;
+    border-radius: 0.8%;
+    display: flex;
+    flex-flow: column;
+}
+.svar {
+    width: 30%;
+    margin: auto;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.904); 
+    box-shadow: 3px 1px 1px 1px rgba(255, 255, 255, 0.815);
+    border-width: 4px;
+    border-color: black;
+    border-radius: 7%;
+    font-size: 2em;
+}
