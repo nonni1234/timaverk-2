@@ -5,6 +5,12 @@
         [1,"Hvað heitir þú?","Nonni"],
         [2,"Hvað heitir asninn?","Donkey"],
         [3,"Hvað er Shrek gamall?","i dont fucking know"]
+    ],
+    "test":[
+        [0,"Spurning 1","Svar 1"],
+        [1,"Spurning 2","Svar 2"],
+        [2,"Spurning 3","Svar 3"]
     ]
+
 }
 }
