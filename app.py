@@ -29,7 +29,9 @@ def next(name):
     if "teljari" in session: # Notar teljara inn í session ef hann er til
         teljari = session["teljari"]
         if teljari >= len(quizzes["shrek"])-1:
-            teljari = 0
+            # ef spurningarnar eru búnar fer þetta í results sem verður einhvernveginn
+            # þetta er það eina sem ég er búin að gera ég kann ekki owo
+            return redirect("/results")
         else:
             teljari += 1
         session["teljari"] = teljari
