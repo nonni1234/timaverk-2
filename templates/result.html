@@ -1,0 +1,11 @@
+{% extends "base-default.html" %}
+{% block title %}Results{% endblock %}
+
+{% block content %}
+<h2>Útkoma</h2>
+<ul>
+    {% for spurning,svar in svor %}
+    <li>{{ spurning }} = {{ svar }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

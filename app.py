@@ -16,16 +16,24 @@ def home():
 @app.route("/quiz/<name>")
 def quiz(name):
     teljari = 0 # Redefinear teljara
+    svor = {}
     if "teljari" in session: # Ef teljari er í session þá er hann notaður
         teljari = session["teljari"]
     else: # Ef ekki þá er hann settur inn í session
         session["teljari"] = teljari
+    
+    if "svor" in session:
+        svor = session["svor"]
+    else:
+        session["svor"] = svor
 
     return template("quiz.html",spurning = quizzes[name][teljari], quiznafn=name)
 
 
-@app.route("/next/<name>") # Næsta spurning (hækkar teljara um eitt)
+@app.route("/next/<name>", methods=["post"]) # Næsta spurning (hækkar teljara um eitt)
 def next(name):
+    svar = form.request["svar"]
+    svor[spurning] = svar
     if "teljari" in session: # Notar teljara inn í session ef hann er til
         teljari = session["teljari"]
         if teljari >= len(quizzes["shrek"])-1:
@@ -38,9 +46,11 @@ def next(name):
         
     else: # Ef það er enginn teljari inn í Session þá gerist ekkert
         pass
-    return redirect("/quiz/%s" % name)
+    return redirect(f"/quiz/{name}")
 
-    
+@app.route("/results")
+def result(svor): # Result fyrir spurningarnar
+    return template("result.html",svor=svor)
 
 
 
