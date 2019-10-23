@@ -2,6 +2,7 @@
 {% block title %}Results{% endblock %}
 
 {% block content %}
+<div id="result">
 <h2>Útkoma</h2>
 <!--<ul>
     {% for spurning,svar in svor.items() %}
@@ -13,7 +14,7 @@
 
 <table>
     {% for k,v in svor.items() %}
-    <tr>
+    <tr class="svar-row">
         {% if v[0].lower() == v[1].lower() %}
             <td style="color: green">&#10003;</td>
             {% else %}
@@ -24,5 +25,7 @@
     </tr>
     {% endfor %}
 </table>
-<a href="/">Aftur heim</a>
+<p id="utkoma">Þú fékkst {{rett}}/{{ total }} rétt</p>
+<div id="heim"><a href="/">Aftur heim</a></div>
+</div>
 {% endblock %}

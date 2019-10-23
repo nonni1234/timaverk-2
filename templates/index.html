@@ -1,8 +1,11 @@
 {% extends "base-default.html" %}
 {% block title %} Heima {% endblock %}
-
 {% block content %}
+<h3 id="quiz-header">Veldu Quiz</h3>
+<div id="quiz-container">
+{% for i in quizzes.keys() %}
+    <a class="quiz-a" href="/quiz/{{i}}"><p>{{ i[0] |upper }}{{ i[1:] }}<!-- Gerir fyrsta stafinn stóran --></p></a>
+{% endfor %}
+</div>
 
-<h2>Heimasíða, ég veit ekki hvað ég ætti að setja hérna. Þetta verkefni er of erfitt</h2>
-<a href="/quiz/shrek" style="color: white">Shrek</a>
 {% endblock %}

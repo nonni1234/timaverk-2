@@ -1,22 +1,82 @@
+/* Body */
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.content {
+    padding-bottom: 60px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#page-wrapper {
+    position: relative;
+    min-height: 100vh;
+}
+
 /* header */
 header {
     text-align: center;
     padding-bottom: 30px;
+    background: cyan;
+    margin: 0;
 }
+header h1 {
+    margin: 0;
+}
+
 nav {
     width: 50%;
+    padding-top: 10px;
     margin: auto;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
 }
-nav a{
-    color: white;
+nav a {
+    color: black;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.3em;
 }
-nav a:hover, a:active {
-    color: #ffffff7c;
+nav a:hover {
+    color: #9401017c;
+}
+
+/* Index.html */
+#quiz-listi {
+    margin: auto;
+    width: max-content;
+    font-size: 4em;
+}
+#quiz-container {
+    margin: auto;
+    width: max-content;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+}
+.quiz-a {
+    background: darkcyan;
+    text-decoration: none;
+    padding: 27px 25px 25px 25px;
+    margin: 10px;
+    min-width: max-content;
+    height: 2em;
+    font-size: 4em;
+    color: maroon;
+}
+.quiz-a:hover {
+    color: red;
+}
+.quiz-a p {
+    width: fit-content;
+    margin: 10px auto auto auto;
+}
+#quiz-header {
+    background: darkcyan;
+    text-align: center;
+    width: max-content;
+    padding: 5px 4em;
+    margin: 20px auto;
 }
 
 
@@ -28,30 +88,37 @@ nav a:hover, a:active {
 
 /* Footer */
 footer {
+    position: absolute;
+    bottom: 0;
     text-align: center;
+    height: 60px;
+    background: cyan;
+    width: 100%;
+    margin: 0;
+    left: 0;
 }
 
 /* Spurningar */
 body {
     background: #180061;
-    color: white;
+    color: black;
 }
 .spurning {
     width: 70%;
-    margin: auto;
+    margin: 40px auto;
     text-align: center;
-    background: #3d0ad8ab;
+    background: darkcyan;/*#3d0ad8ab*/
     border: 1px solid black;
     border-radius: 0.8%;
     display: flex;
     flex-flow: column;
 }
+
 .svar {
     width: 30%;
     margin: auto;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.904); 
-    box-shadow: 3px 1px 1px 1px rgba(255, 255, 255, 0.815);
     border-width: 4px;
     border-color: black;
     border-radius: 7%;
@@ -60,4 +127,25 @@ body {
 
 .submit {
     margin: 20px;
+    padding: 7px;
+    background: #180061;
+    font-weight: bold;
+    color: white;
+}
+/* Result.html */
+#result {
+    margin: auto;
+    width: max-content;
+}
+#result h2 {
+    width: 100%;
+    text-align: center;
+}
+.svar-row {
+    margin: 10px 0;
+}
+#heim {
+    width: max-content;
+    margin: 10px auto;
+    text-align: center;
 }
