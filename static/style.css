@@ -1,14 +1,43 @@
-/*
-Color palette:
-#
-*/
+/* header */
+header {
+    text-align: center;
+    padding-bottom: 30px;
+}
+nav {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+}
+nav a{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+nav a:hover, a:active {
+    color: #ffffff7c;
+}
+
+
+/* Content */
+.content {
+    width: 60%;
+    margin: auto;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+}
 
 /* Spurningar */
 body {
-    background: #180061e3;
+    background: #180061;
+    color: white;
 }
 .spurning {
-    width: 50%;
+    width: 70%;
     margin: auto;
     text-align: center;
     background: #3d0ad8ab;
@@ -27,4 +56,8 @@ body {
     border-color: black;
     border-radius: 7%;
     font-size: 2em;
+}
+
+.submit {
+    margin: 20px;
 }

@@ -3,9 +3,9 @@
 
 <div class="spurning">
     <h1> {{ spurning[1] }} </h1>
-    <input type="text" name="svar" class="svar">
-<a href="/next/{{quiznafn}}"class="naestaSpurning">
-<h2>Næsta Spurning</h2>
-</a>
+    <form action="/next/{{quiznafn}}" method="post">
+        <input type="text" name="svar" class="svar"><br>
+        <input type="submit" value="Næsta spurning" class="submit">
+    </form>
 
 {% endblock %}

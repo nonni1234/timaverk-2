@@ -3,9 +3,26 @@
 
 {% block content %}
 <h2>Útkoma</h2>
-<ul>
-    {% for spurning,svar in svor %}
+<!--<ul>
+    {% for spurning,svar in svor.items() %}
     <li>{{ spurning }} = {{ svar }}</li>
     {% endfor %}
 </ul>
+<p>{{ svor }}</p>
+-->
+
+<table>
+    {% for k,v in svor.items() %}
+    <tr>
+        {% if v[0].lower() == v[1].lower() %}
+            <td style="color: green">&#10003;</td>
+            {% else %}
+            <td style="color: red">X</td>
+            {% endif %}
+            <td>{{ k }}</td>
+        <td>Þitt svar: {{ v[1] }}<br>Rétta svarið: {{ v[0] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Aftur heim</a>
 {% endblock %}

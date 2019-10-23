@@ -32,10 +32,21 @@ def quiz(name):
 
 @app.route("/next/<name>", methods=["post"]) # Næsta spurning (hækkar teljara um eitt)
 def next(name):
-    svar = form.request["svar"]
-    svor[spurning] = svar
+    svar = request.form["svar"]
+    svor = {}
+    teljari = 0
+    if "svor" in session:
+        svor = session["svor"]
+    else:
+        session["svor"] = svor
     if "teljari" in session: # Notar teljara inn í session ef hann er til
         teljari = session["teljari"]
+
+        svor[quizzes[name][teljari][1]] = [quizzes[name][teljari][2], svar] # setur spurningu, rétta svarið og giskaða svarið í dictionary með session
+        if "svor" in session:
+            session["svor"] = svor
+        else:
+            svor = session["svor"]
         if teljari >= len(quizzes["shrek"])-1:
             # ef spurningarnar eru búnar fer þetta í results sem verður einhvernveginn
             # þetta er það eina sem ég er búin að gera ég kann ekki owo
@@ -46,10 +57,23 @@ def next(name):
         
     else: # Ef það er enginn teljari inn í Session þá gerist ekkert
         pass
+    
     return redirect(f"/quiz/{name}")
 
+
 @app.route("/results")
-def result(svor): # Result fyrir spurningarnar
+def result(): # Result fyrir spurningarnar
+    if "svor" in session:
+        svor = session["svor"]
+    else:
+        # engin svör voru sett í sessionið svo hér hefur eitthvað farið úrskeiðis
+        # kannski /results skrifað beint inn í browser
+        # redirectum bara á index eða eitthvað
+        return redirect(url_for("home"))
+
+    session.pop("svor")
+    session.pop("teljari")
+
     return template("result.html",svor=svor)
 
 
