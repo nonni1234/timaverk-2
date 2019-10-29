@@ -136,12 +136,14 @@ body {
 #result {
     margin: auto;
     width: max-content;
+    color: white;
 }
 #result h2 {
     width: 100%;
     text-align: center;
 }
 .svar-row {
+    color: white;
     margin: 10px 0;
 }
 #heim {
