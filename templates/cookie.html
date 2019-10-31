@@ -1,0 +1,9 @@
+{% extends "base-default.html" %}
+{% block title %} Cookie stuff {% endblock %}
+{% block content %}
+<h1>Setja köku</h1>
+
+{% for x in cookie %}
+<h3>{{ x }}</h3>
+{% endfor %}
+{% endblock %}

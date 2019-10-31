@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template as template, session, url_for, request, redirect, json
+from flask import Flask, render_template as template, url_for,session, request, redirect, json, make_response
 app = Flask(__name__)
 app.secret_key = os.urandom(8)
 # Gera stuff tilbúið
@@ -14,7 +14,14 @@ def home():
     if "svor" in session: # Resettar cookies í hvert sinn sem þú ferð á root
         session.pop("svor")
         session.pop("teljari")
+    
+    if request.cookies.get("Kaka"):
+        res = make_response(template("index.html",quizzes=quizzes))
+        res.set_cookie("Kaka","kaka",max_age=0)
+        return res
+
     return template("index.html",quizzes=quizzes)
+
 
 @app.route("/quiz/<name>")
 def quiz(name): # Gefur quiz eftir vali
@@ -85,6 +92,21 @@ def result(name): # Result fyrir spurningarnar
     session.pop("teljari")
     session.pop("rett")
     return template("result.html", svor=svor, rett=rett, total = len(quizzes[name]))
+
+@app.route("/cookie")
+def cookie():
+    if not request.cookies.get("Kaka"):
+        res = make_response("Set inn cookie")
+        listi = ["1","2","3"]
+        res.set_cookie("Kaka",str(listi), max_age = 10)
+    else:
+        #res = make_response("Kakan er með value {}".format(request.cookies.get("Kaka")))
+        listi = request.cookies.get("Kaka")
+        res = make_response(template("cookie.html",cookie=list(eval(listi))))
+    
+    return res
+
+
 
 @app.errorhandler(404)
 def pagenotfound(error):
