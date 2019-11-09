@@ -1,7 +1,6 @@
 import os
-from flask import Flask, render_template as template, url_for,session, request, redirect, json, make_response
+from flask import Flask, render_template as template, url_for, request, redirect, json, make_response
 app = Flask(__name__)
-app.secret_key = os.urandom(8)
 # Gera stuff tilbúið
 teljari = 0
 with open("static/quiz.json", "r", encoding="UTF-8") as f:
@@ -11,13 +10,16 @@ with open("static/quiz.json", "r", encoding="UTF-8") as f:
 
 @app.route("/") # Root Routeið
 def home():
-    if "svor" in session: # Resettar cookies í hvert sinn sem þú ferð á root
-        session.pop("svor")
-        session.pop("teljari")
+    # if "svor" in session:
+    #     session.pop("svor")
+    #     session.pop("teljari")
     
-    if request.cookies.get("Kaka"):
+    if request.cookies.get("svor"): # Resettar cookies í hvert sinn sem þú ferð á root
         res = make_response(template("index.html",quizzes=quizzes))
         res.set_cookie("Kaka","kaka",max_age=0)
+        res.set_cookie("svor","svor", max_age=0)
+        res.set_cookie("teljari","teljari",max_age=0)
+        res.set_cookie("ready","no",max_age=0)
         return res
 
     return template("index.html",quizzes=quizzes)
@@ -25,73 +27,83 @@ def home():
 
 @app.route("/quiz/<name>")
 def quiz(name): # Gefur quiz eftir vali
-    teljari = 0 # Redefinear teljara
+#if not request.cookies.get("ready"):
+    teljari = "0" # Redefinear teljara
     svor = {}
-    if "teljari" in session: # Ef teljari er í session þá er hann notaður
-        teljari = session["teljari"]
-    else: # Ef ekki þá er hann settur inn í session
-        session["teljari"] = teljari
-    
-    if "svor" in session: # Sama og með teljara
-        svor = session["svor"]
-    else:
-        session["svor"] = svor
-
-    return template("quiz.html",spurning = quizzes[name][teljari], quiznafn=name)
-
+    res = make_response(redirect(f"/{name}"))
+    #if request.cookies.get("teljari"): # Ef teljari er í session þá er hann notaður
+        #teljari = int(request.cookies.get("teljari"))
+    #else: # Ef ekki þá er hann settur inn í session
+    #if request.cookies.get("svor"): # Sama og með teljara
+        #svor = dict(eval(request.cookies.get("svor")))
+    #else:
+        #res.set_cookie("svor",str(svor))
+    res.set_cookie("ready","yes")
+    res.set_cookie("teljari",str(teljari))
+    res.set_cookie("svor",str(svor))
+    return res
+@app.route("/<name>")
+def quizready(name):
+    teljari = int(request.cookies.get("teljari"))
+    svor = dict(eval(request.cookies.get("svor")))
+    return template("quiz.html",spurning = quizzes[name][teljari], quiznafn=name, teljari=teljari)
 @app.route("/next/<name>", methods=["post"]) # Næsta spurning (hækkar teljara um eitt)
 def next(name):
     svar = request.form["svar"]
     svor = {}
     rett = 0
     teljari = 0
-    if "svor" in session:
-        svor = session["svor"]
+    res = make_response(redirect(f"/quiz/{name}"))
+
+    if request.cookies.get("svor"):
+        svor = dict(eval(request.cookies.get("svor")))
     else:
-        session["svor"] = svor
-    if "teljari" in session: # Notar teljara inn í session ef hann er til
-        teljari = session["teljari"]
+        res.set_cookie("svor",str(svor))
+
+    if request.cookies.get("teljari"): # Notar teljara inn í session ef hann er til
+        teljari = int(request.cookies.get("teljari"))
         svor[quizzes[name][teljari][1]] = [quizzes[name][teljari][2], svar] # setur spurningu, rétta svarið og giskaða svarið í dictionary með session
-        if "rett" in session: # Notar rétt teljaran í session ef hægt
-            rett = session["rett"]
-        if "svor" in session:
-            session["svor"] = svor
+        if request.cookies.get("rett"): # Notar rétt teljaran í session ef hægt
+            rett = int(request.cookies.get("rett"))
+        if request.cookies.get("svor"):
+            res.set_cookie("svor",str(svor))
         else:
-            svor = session["svor"]
+            svor = dict(eval(request.cookies.get("svor")))
         svor[quizzes[name][teljari][1]] = [quizzes[name][teljari][2], svar] # setur spurningu, rétta svarið og giskaða svarið í dictionary með sessions
         templisti = svor[quizzes[name][teljari][1]]
         if templisti[0].lower() == templisti[1].lower():
                 rett += 1 # Hækkar rétt teljara um eitt ef svarið er rétt
         if teljari >= len(quizzes[name])-1:
             # ef spurningarnar eru búnar fer þetta í results
-            session["rett"] = rett
+            res.set_cookie("rett",str(rett))
             return redirect(f"/results/{name}")
         else:
             teljari += 1
-        session["teljari"] = teljari
-        session["rett"] = rett
+        res.set_cookie("teljari",str(teljari))
+        res.set_cookie("rett",str(rett))
         
     else: # Ef það er enginn teljari inn í Session þá gerist ekkert
         return redirect("/")
     
-    return redirect(f"/quiz/{name}")
+    return res
 
 
 @app.route("/results/<name>")
 def result(name): # Result fyrir spurningarnar
-    if "svor" in session and "rett" in session:
-        svor = session["svor"]
-        rett = session["rett"]
+    if request.cookies.get("svor") and request.cookies.get("rett"):
+        svor = dict(eval(request.cookies.get("svor")))
+        rett = int(request.cookies.get("rett"))
+        res = make_response(template("result.html", svor=svor, rett=rett, total = len(quizzes[name])))
     else:
         # engin svör voru sett í sessionið svo hér hefur eitthvað farið úrskeiðis
         # kannski /results skrifað beint inn í browser
         # redirectum bara á index eða eitthvað
         return redirect(url_for("home"))
 
-    session.pop("svor")
-    session.pop("teljari")
-    session.pop("rett")
-    return template("result.html", svor=svor, rett=rett, total = len(quizzes[name]))
+    res.set_cookie("svor","svor", max_age=0)
+    res.set_cookie("teljari","teljari", max_age=0)
+    res.set_cookie("rett","ret", max_age=0)
+    return res
 
 @app.route("/cookie")
 def cookie():
