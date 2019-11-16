@@ -86,6 +86,9 @@ def result(name): # Result fyrir spurningarnar
     session.pop("rett")
     return template("result.html", svor=svor, rett=rett, total = len(quizzes[name]))
 
+@app.route("/nyttquiz")
+def nytt():
+    return template("nyttquiz.html")
 @app.errorhandler(404)
 def pagenotfound(error):
     return template("404.html"), 404

@@ -151,3 +151,13 @@ body {
     margin: 10px auto;
     text-align: center;
 }
+/* nyttquiz.html */
+#spurningar-table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+#spurningar-table td,#spurningar-table tr {
+    border: 1px solid gray;
+    padding: 6px;
+    font-size: 1.2em;
+}

@@ -1,0 +1,17 @@
+{% extends "base-default.html" %}
+{% block title %}Nýtt Quiz{% endblock %}
+{% block content %}
+    Spurning: <input type="text" name="nyspurning" id="nyspurning"><br>
+    Svar: <input type="text" name="nyttsvar" id="nyttsvar"><br>
+    <button onclick="newRow()" type="submit">Submit</button>
+<table id="spurningar-table">
+    <thead><h2>Spurningar</h2></thead>
+    <tbody id="spurningar-body">
+        <tr>
+            <td>nr</td>
+            <td>Spurning</td>
+            <td>Svar</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
