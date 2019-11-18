@@ -1,12 +1,15 @@
 {% extends "base-default.html" %}
 {% block title %}Nýtt Quiz{% endblock %}
 {% block content %}
-    Spurning: <input type="text" name="nyspurning" id="nyspurning"><br>
-    Svar: <input type="text" name="nyttsvar" id="nyttsvar"><br>
+    Spurning: <input type="text" name="nyspurning" id="nyspurning" required><br>
+    Svar: <input type="text" name="nyttsvar" id="nyttsvar" required><br>
     <button onclick="newRow()" type="submit">Submit</button>
+<form action="/nyttquiz" method="POST">
+    <h2><input type="text" name="nafn" id="nafn" placeholder="Nafn" required></h2>
 <table id="spurningar-table">
     <thead><h2>Spurningar</h2></thead>
     <tbody id="spurningar-body">
+        <input type="hidden" name="max" id="max" value="0">
         <tr>
             <td>nr</td>
             <td>Spurning</td>
@@ -14,4 +17,6 @@
         </tr>
     </tbody>
 </table>
+<button type="submit">Klára</button>
+</form>
 {% endblock %}

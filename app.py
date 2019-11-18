@@ -4,13 +4,24 @@ app = Flask(__name__)
 app.secret_key = os.urandom(8)
 # Gera stuff tilbúið
 teljari = 0
-with open("static/quiz.json", "r", encoding="UTF-8") as f:
-    quizzes= json.load(f)
-    quizzes = quizzes["quizzes"]
+def getQuizzes():
+    with open("static/quiz.json", "r", encoding="UTF-8") as f:
+        quizzes = json.load(f)
+        quizzes = quizzes["quizzes"]
+        return quizzes
 # -----------------
-
+def addQuiz(spurningar,nafn):
+    with open("static/quiz.json","r+", encoding="UTF-8") as f:
+        data = json.load(f)
+        print(spurningar)
+        f.seek(0)
+        f.truncate()
+        data["quizzes"][nafn] = spurningar
+        json.dump(data, f, indent=2,encoding="UTF-8")
+quizzes = getQuizzes()
 @app.route("/") # Root Routeið
 def home():
+    quizzes = getQuizzes()
     if "svor" in session: # Resettar cookies í hvert sinn sem þú ferð á root
         session.pop("svor")
         session.pop("teljari")
@@ -86,9 +97,20 @@ def result(name): # Result fyrir spurningarnar
     session.pop("rett")
     return template("result.html", svor=svor, rett=rett, total = len(quizzes[name]))
 
-@app.route("/nyttquiz")
+@app.route("/nyttquiz", methods = ["POST","GET"])
 def nytt():
-    return template("nyttquiz.html")
+    if request.method == "POST":
+        max = int(request.form["max"])
+        spurningar = []
+        nafn = request.form["nafn"]
+        for i in range(1,max+1):
+            spurningar.append(
+                [i, request.form["spurning"+str(i)], request.form["svar"+str(i)]]
+            )
+        addQuiz(spurningar,nafn)
+        return "uwu"
+    else:
+        return template("nyttquiz.html")
 @app.errorhandler(404)
 def pagenotfound(error):
     return template("404.html"), 404
