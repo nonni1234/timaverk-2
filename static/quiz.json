@@ -1,107 +1,100 @@
 {
-  "quizzes": {
-    "Harry Potter": [
-      [
-        1,
-        "spurning",
-        "svar"
-      ]
-    ],
-    "forritun": [
-      [
-        0,
-        "Hva\u00f0 er n\u00faverandi vins\u00e6lasta forritunarm\u00e1li\u00f0?",
-        "Python"
-      ],
-      [
-        1,
-        "Hva\u00f0 h\u00e9t eitt af fyrstu forritunarm\u00e1lum heims eftir Alick Glennie?",
-        "Autocode"
-      ],
-      [
-        2,
-        "Hva\u00f0 heitir gagnager\u00f0in sem geymir texta \u00ed Python?",
-        "String"
-      ],
-      [
-        3,
-        "Hva\u00f0 heitir gagnager\u00f0in sem geymir t\u00f6lur \u00ed Python?",
-        "Integer"
-      ],
-      [
-        4,
-        "Hva\u00f0a \u00e1r var Python b\u00fai\u00f0 til?",
-        "1991"
-      ]
-    ],
-    "h\u00f6fu\u00f0borgir": [
-      [
-        0,
-        "Hver er h\u00f6fu\u00f0borg \u00cdslands?",
-        "Reykjav\u00edk"
-      ],
-      [
-        1,
-        "Hver er h\u00f6fu\u00f0borg Danm\u00f6rk",
-        "Kaupmannah\u00f6fn"
-      ],
-      [
-        2,
-        "Hver er h\u00f6fu\u00f0borg Sv\u00ed\u00fej\u00f3\u00f0ar",
-        "Stokkh\u00f3lmur"
-      ],
-      [
-        3,
-        "Hver er h\u00f6fu\u00f0borg Englands",
-        "London"
-      ],
-      [
-        4,
-        "Hver er h\u00f6fu\u00f0borg Bosn\u00edu og Herseg\u00f3v\u00ednu",
-        "Sarajev\u00f3"
-      ],
-      [
-        5,
-        "Hver er h\u00f6fu\u00f0borg Indlands?",
-        "N\u00fdja Del\u00ed"
-      ]
-    ],
-    "shrek": [
-      [
-        0,
-        "Hva\u00f0 heitir Ogreinn?",
-        "Shrek"
-      ],
-      [
-        1,
-        "Hva\u00f0 heitir princessan",
-        "Fiona"
-      ],
-      [
-        2,
-        "Hva\u00f0 heitir asninn?",
-        "Donkey"
-      ],
-      [
-        3,
-        "Hva\u00f0a \u00e1r kom Shrek 1 \u00fat?",
-        "2001"
-      ],
-      [
-        4,
-        "Hva\u00f0a \u00e1r kom Shrek 2 \u00fat?",
-        "2004"
-      ],
-      [
-        5,
-        "Hva\u00f0a \u00e1r kom Shrek 3 \u00fat?",
-        "2007"
-      ],
-      [
-        6,
-        "Hverjum \u00e1 princessan a\u00f0 giftast?",
-        "Farquad"
-      ]
-    ]
-  }
+ "quizzes": {
+  "forritun": [
+   [
+    0,
+    "Hva\u00f0 er n\u00faverandi vins\u00e6lasta forritunarm\u00e1li\u00f0?",
+    "Python"
+   ],
+   [
+    1,
+    "Hva\u00f0 h\u00e9t eitt af fyrstu forritunarm\u00e1lum heims eftir Alick Glennie?",
+    "Autocode"
+   ],
+   [
+    2,
+    "Hva\u00f0 heitir gagnager\u00f0in sem geymir texta \u00ed Python?",
+    "String"
+   ],
+   [
+    3,
+    "Hva\u00f0 heitir gagnager\u00f0in sem geymir t\u00f6lur \u00ed Python?",
+    "Integer"
+   ],
+   [
+    4,
+    "Hva\u00f0a \u00e1r var Python b\u00fai\u00f0 til?",
+    "1991"
+   ]
+  ],
+  "h\u00f6fu\u00f0borgir": [
+   [
+    0,
+    "Hver er h\u00f6fu\u00f0borg \u00cdslands?",
+    "Reykjav\u00edk"
+   ],
+   [
+    1,
+    "Hver er h\u00f6fu\u00f0borg Danm\u00f6rk",
+    "Kaupmannah\u00f6fn"
+   ],
+   [
+    2,
+    "Hver er h\u00f6fu\u00f0borg Sv\u00ed\u00fej\u00f3\u00f0ar",
+    "Stokkh\u00f3lmur"
+   ],
+   [
+    3,
+    "Hver er h\u00f6fu\u00f0borg Englands",
+    "London"
+   ],
+   [
+    4,
+    "Hver er h\u00f6fu\u00f0borg Bosn\u00edu og Herseg\u00f3v\u00ednu",
+    "Sarajev\u00f3"
+   ],
+   [
+    5,
+    "Hver er h\u00f6fu\u00f0borg Indlands?",
+    "N\u00fdja Del\u00ed"
+   ]
+  ],
+  "shrek": [
+   [
+    0,
+    "Hva\u00f0 heitir Ogreinn?",
+    "Shrek"
+   ],
+   [
+    1,
+    "Hva\u00f0 heitir princessan",
+    "Fiona"
+   ],
+   [
+    2,
+    "Hva\u00f0 heitir asninn?",
+    "Donkey"
+   ],
+   [
+    3,
+    "Hva\u00f0a \u00e1r kom Shrek 1 \u00fat?",
+    "2001"
+   ],
+   [
+    4,
+    "Hva\u00f0a \u00e1r kom Shrek 2 \u00fat?",
+    "2004"
+   ],
+   [
+    5,
+    "Hva\u00f0a \u00e1r kom Shrek 3 \u00fat?",
+    "2007"
+   ],
+   [
+    6,
+    "Hverjum \u00e1 princessan a\u00f0 giftast?",
+    "Farquad"
+   ]
+  ]
+ }
 }
