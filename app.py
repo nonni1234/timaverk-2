@@ -112,7 +112,7 @@ def nytt():
                 [i, request.form["spurning"+str(i)], request.form["svar"+str(i)]]
             )
         addQuiz(spurningar,nafn)
-        return "uwu"
+        return redirect("/")
     else:
         return template("nyttquiz.html")
 
