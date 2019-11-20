@@ -2,14 +2,19 @@
 {% block title %}Nýtt Quiz{% endblock %}
 {% block content %}
 <div id="new_wrapper">
-    Spurning: <br><input type="text" name="nyspurning" id="nyspurning" required><br>
-    Svar: <br><input type="text" name="nyttsvar" id="nyttsvar" required><br>
-    <button onclick="newRow()" type="submit">Bæta við spurningu</button>
+    <h1 class="center margins">Búa til quiz</h1>
+    <div id="new_question">
+        <div id="inputs">
+            <span class="newspan">Spurning:</span> <br><input type="text" name="nyspurning" id="nyspurning" class="nafn" required><br>
+            <span class="newspan">Svar:</span> <br><input type="text" name="nyttsvar" id="nyttsvar" class="nafn" required><br>
+        </div>
+        <button onclick="newRow()" type="submit" id="submit_spurning">Bæta við spurningu</button>
+    </div>
 
     <form action="/nyttquiz" method="POST" id="nyttquiz">
         <h2 style="text-align: center;">Spurningar</h2>
         <table id="spurningar-table">
-            <div id="nafn-div"><input type="text" name="nafn" id="nafn" placeholder="Nafn" required></div>
+            <div id="nafn-div"><input type="text" name="nafn" id="nafn" placeholder="Nafn á quiz" required></div>
                 <tbody id="spurningar-body">
                     <input type="hidden" name="max" id="max" value="0">
                     <tr>
@@ -19,7 +24,7 @@
                     </tr>
                 </tbody>
             </table>
-        <button type="submit">Klára</button>
+            <div id="button_label"><button type="submit" id="submit_quiz">Klára quiz</button></div>
     </form>
 </div>
 {% endblock %}

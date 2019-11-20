@@ -12,6 +12,13 @@ body {
     position: relative;
     min-height: 100vh;
 }
+.center {
+    text-align: center;
+}
+.margins {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
 /* header */
 header {
@@ -191,4 +198,47 @@ input[name="nafn"]{
 }
 #titill {
     margin: auto;
+}
+#submit_quiz {
+    width: 120px;
+    height: 35px;
+    font-size: 18px;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+}
+#submit_quiz:hover {
+    background-color: #c2c2c2;
+}
+#button_label {
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}
+#new_question {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+#new_question input {
+    margin: 10px;
+}
+#submit_spurning {
+    height: 30px;
+    font-size: 17px;
+    border-radius: 4px;
+    margin: 10px;
+}
+#submit_spurning:hover {
+    background-color: #c2c2c2;
+}
+.nafn {
+    height: 25px;
+    border-radius: 4px;
+}
+.newspan {
+    margin: 10px;
+    font-size: 18px;
 }
