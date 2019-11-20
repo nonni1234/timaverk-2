@@ -1,22 +1,25 @@
 {% extends "base-default.html" %}
 {% block title %}Nýtt Quiz{% endblock %}
 {% block content %}
-    Spurning: <input type="text" name="nyspurning" id="nyspurning" required><br>
-    Svar: <input type="text" name="nyttsvar" id="nyttsvar" required><br>
-    <button onclick="newRow()" type="submit">Submit</button>
-<form action="/nyttquiz" method="POST">
-    <h2><input type="text" name="nafn" id="nafn" placeholder="Nafn" required></h2>
-<table id="spurningar-table">
-    <thead><h2>Spurningar</h2></thead>
-    <tbody id="spurningar-body">
-        <input type="hidden" name="max" id="max" value="0">
-        <tr>
-            <td>nr</td>
-            <td>Spurning</td>
-            <td>Svar</td>
-        </tr>
-    </tbody>
-</table>
-<button type="submit">Klára</button>
-</form>
+<div id="new_wrapper">
+    Spurning: <br><input type="text" name="nyspurning" id="nyspurning" required><br>
+    Svar: <br><input type="text" name="nyttsvar" id="nyttsvar" required><br>
+    <button onclick="newRow()" type="submit">Bæta við spurningu</button>
+
+    <form action="/nyttquiz" method="POST" id="nyttquiz">
+        <h2 style="text-align: center;">Spurningar</h2>
+        <table id="spurningar-table">
+            <div id="nafn-div"><input type="text" name="nafn" id="nafn" placeholder="Nafn" required></div>
+                <tbody id="spurningar-body">
+                    <input type="hidden" name="max" id="max" value="0">
+                    <tr>
+                        <td>Númer</td>
+                        <td>Spurning</td>
+                        <td>Svar</td>
+                    </tr>
+                </tbody>
+            </table>
+        <button type="submit">Klára</button>
+    </form>
+</div>
 {% endblock %}

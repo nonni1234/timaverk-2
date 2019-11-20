@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template as template, session, url_for, request, redirect, json
+from flask import Flask, render_template as template, session, url_for, request, redirect, json, send_from_directory
 app = Flask(__name__)
 app.secret_key = os.urandom(8)
 # Gera stuff tilbúið
@@ -29,6 +29,7 @@ def home():
 
 @app.route("/quiz/<name>")
 def quiz(name): # Gefur quiz eftir vali
+    quizzes = getQuizzes()
     teljari = 0 # Redefinear teljara
     svor = {}
     if "teljari" in session: # Ef teljari er í session þá er hann notaður
@@ -45,6 +46,7 @@ def quiz(name): # Gefur quiz eftir vali
 
 @app.route("/next/<name>", methods=["post"]) # Næsta spurning (hækkar teljara um eitt)
 def next(name):
+    quizzes = getQuizzes()
     svar = request.form["svar"]
     svor = {}
     rett = 0
@@ -83,6 +85,7 @@ def next(name):
 
 @app.route("/results/<name>")
 def result(name): # Result fyrir spurningarnar
+    quizzes = getQuizzes()
     if "svor" in session and "rett" in session:
         svor = session["svor"]
         rett = session["rett"]
@@ -99,6 +102,7 @@ def result(name): # Result fyrir spurningarnar
 
 @app.route("/nyttquiz", methods = ["POST","GET"])
 def nytt():
+    quizzes = getQuizzes()
     if request.method == "POST":
         max = int(request.form["max"])
         spurningar = []
@@ -111,6 +115,7 @@ def nytt():
         return "uwu"
     else:
         return template("nyttquiz.html")
+
 @app.errorhandler(404)
 def pagenotfound(error):
     return template("404.html"), 404

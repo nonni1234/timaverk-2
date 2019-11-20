@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="spurning">
-    <h1> {{ spurning[1] }} </h1>
+    <h1 id="spurning"> {{ spurning[1] }} </h1>
     <form action="/next/{{quiznafn}}" method="post">
         <input type="text" name="svar" class="svar" autofocus required><br>
         <input type="submit" value="Næsta spurning" class="submit">
