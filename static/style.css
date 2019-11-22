@@ -21,34 +21,34 @@ body {
 }
 
 /* header */
+nav a:hover {
+    color: orangered;
+}
 header {
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     background: cyan;
     margin: 0;
 }
 header h1 {
     margin: 0;
+    font-size: 2.1em;
 }
 
 nav {
     width: 50%;
-    padding-top: 10px;
-    margin: auto;
+    padding-top: 5px;
+    margin: 0 auto;
     display: flex;
     flex-flow: row;
     justify-content: space-around;
 }
 nav a {
-    color: black;
+    font-size: 1.4em;
+    color: mediumvioletred;
     text-decoration: none;
-    font-size: 1.3em;
 }
-nav a:hover {
-    color: #9401017c;
-}
-
-/* Index.html */
+    /* Index.html */
 #quiz-listi {
     margin: auto;
     width: max-content;

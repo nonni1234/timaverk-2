@@ -17,7 +17,7 @@ def addQuiz(spurningar,nafn):
         f.seek(0)
         f.truncate()
         data["quizzes"][nafn] = spurningar
-        json.dump(data, f, indent=1,encoding="UTF-8")
+        json.dump(data, f,indent=2,encoding="UTF-8")
 quizzes = getQuizzes()
 @app.route("/") # Root Routeið
 def home():
